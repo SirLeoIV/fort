@@ -6,18 +6,15 @@ import com.fort.model.dto.CreateClientDTO;
 import com.fort.model.dto.GetClientDTO;
 import com.fort.service.ClientService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.NoSuchElementException;
 
-@CrossOrigin(
-        origins = {"http://localhost:4200"},
-        allowCredentials = "true",
-        allowedHeaders = {"X-Custom-Header"},
-        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
 @RestController
 public class Controller {
-
 
     ClientService clientService;
 
@@ -30,12 +27,22 @@ public class Controller {
         return "{\"response\": \"Hello, World!\"}";
     }
 
+    /**
+     * Create a new client with a password
+     * @param client CreateClientDTO (basically only a password)
+     * @return ClientDTO (client id, password)
+     */
     @PostMapping("/client")
     public ResponseEntity<ClientDTO> create(@RequestBody CreateClientDTO client) {
         ClientDTO clientDTO = clientService.createAndSave(client.password);
         return ResponseEntity.ok().body(clientDTO);
     }
 
+    /**
+     * Get client and their counter via a valid id and password
+     * @param client GetClientDTO
+     * @return ClientDTO
+     */
     @PostMapping("/counter")
     public ResponseEntity<ClientDTO> getClient(@RequestBody GetClientDTO client) {
         try {
@@ -48,6 +55,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Add an action to a client
+     * @param action AddActionDTO
+     * @return ClientDTO (client id, password, actions, counter)
+     */
     @PostMapping("/action")
     public ResponseEntity<ClientDTO> addAction(@RequestBody AddActionDTO action) {
         try {

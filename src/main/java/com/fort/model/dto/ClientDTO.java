@@ -10,15 +10,12 @@ public class ClientDTO {
 
     private List<ActionDTO> actions;
 
-    private ServerDTO server;
-
     private int counter = 0;
 
-    public ClientDTO(long id, String password, List<ActionDTO> actions, ServerDTO server) {
+    public ClientDTO(long id, String password, List<ActionDTO> actions) {
         this.id = id;
         this.password = password;
         this.actions = actions;
-        this.server = server;
     }
 
     public long getId() {
@@ -43,14 +40,6 @@ public class ClientDTO {
 
     public void setActions(List<ActionDTO> actions) {
         this.actions = actions;
-    }
-
-    public ServerDTO getServer() {
-        return server;
-    }
-
-    public void setServer(ServerDTO server) {
-        this.server = server;
     }
 
     public int getCounter() {

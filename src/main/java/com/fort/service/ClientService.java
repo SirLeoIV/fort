@@ -2,7 +2,6 @@ package com.fort.service;
 
 import com.fort.model.dto.ActionDTO;
 import com.fort.model.dto.ClientDTO;
-import com.fort.model.dto.ServerDTO;
 import com.fort.model.entities.Action;
 import com.fort.model.entities.Client;
 import com.fort.model.repositories.ActionRepository;
@@ -29,13 +28,13 @@ public class ClientService {
         client.password = password;
         clientRepository.save(client);
         List<ActionDTO> actionDTOS = actionService.getActions(client.getId());
-        return new ClientDTO(client.getId(), client.password, actionDTOS, new ServerDTO());
+        return new ClientDTO(client.getId(), client.password, actionDTOS);
     }
 
     public ClientDTO getClient(long id, String password) throws RuntimeException {
         Client client = getClientAndVerify(id, password);
         List<ActionDTO> actionDTOS = actionService.getActions(client.getId());
-        ClientDTO clientDTO = new ClientDTO(client.getId(), client.password, actionDTOS, new ServerDTO());
+        ClientDTO clientDTO = new ClientDTO(client.getId(), client.password, actionDTOS);
         clientDTO.setCounter(calculateCounter(actionDTOS));
         return clientDTO;
     }
@@ -56,6 +55,10 @@ public class ClientService {
         action.timestamp = System.currentTimeMillis();
         action.client = client;
         action.delay = delay;
+        if (delay < 0) {
+            System.out.println("Invalid delay");
+            throw new RuntimeException("Invalid delay");
+        }
         action.increase = increase;
         System.out.println("Add action for client: " + clientId);
         actionRepository.save(action);
@@ -63,7 +66,7 @@ public class ClientService {
         return getClient(clientId, password);
     }
 
-    private Client getClientAndVerify(long id, String password) {
+    private Client getClientAndVerify(long id, String password) throws RuntimeException {
         Client client = clientRepository.findById(id).orElseThrow();
         System.out.println("Get client: " + client.getId());
         if (!client.password.equals(password)) {

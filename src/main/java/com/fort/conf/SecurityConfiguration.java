@@ -18,6 +18,7 @@ public class SecurityConfiguration {
        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
        CorsConfiguration corsConfiguration = new CorsConfiguration();
        corsConfiguration.addAllowedOrigin("http://localhost:4200");
+       corsConfiguration.addAllowedOrigin("https://darkslategray-swan-903516.hostingersite.com/");
        corsConfiguration.setAllowCredentials(true);
        corsConfiguration.setAllowedHeaders(Arrays.asList("X-Custom-Header", "Content-Type", "Authorization"));
        corsConfiguration.setAllowedMethods(Arrays.asList(
@@ -28,10 +29,9 @@ public class SecurityConfiguration {
                HttpMethod.PUT.name(),
                HttpMethod.DELETE.name()));
        corsConfiguration.setMaxAge(1800L);
-       source.registerCorsConfiguration("/client", corsConfiguration); // you restrict your path here
-       source.registerCorsConfiguration("/counter", corsConfiguration); // you restrict your path here
-       source.registerCorsConfiguration("/action", corsConfiguration); // you restrict your path here
-       // System.out.println("CorsConfigurationSource");
+       source.registerCorsConfiguration("/client", corsConfiguration);
+       source.registerCorsConfiguration("/counter", corsConfiguration);
+       source.registerCorsConfiguration("/action", corsConfiguration);
        return source;
     }
 
