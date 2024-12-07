@@ -6,15 +6,14 @@ public class AddActionDTO {
 
     public final int increase; // if negative, decrease
 
-    public final long clientID;
+    public final String clientName;
 
     public final String password;
 
-
-    public AddActionDTO(int delay, int increase, long clientID, String password) {
+    public AddActionDTO(int delay, int increase, String clientName, String password) {
         this.delay = delay;
         this.increase = increase;
-        this.clientID = clientID;
+        this.clientName = clientName;
         this.password = password;
     }
 }

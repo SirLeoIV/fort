@@ -2,12 +2,23 @@ package com.fort.model.dto;
 
 public class CreateClientDTO {
 
+    public String name;
+
     public String password;
 
     public CreateClientDTO() {}
 
-    public CreateClientDTO(String password) {
+    public CreateClientDTO(String name, String password) {
+        this.name = name;
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {

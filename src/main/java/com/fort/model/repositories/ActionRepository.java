@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ActionRepository extends CrudRepository<Action, Long> {
 
-    public List<Action> findByClientId(Long clientId);
+    List<Action> findByClientId(Long clientId);
 }

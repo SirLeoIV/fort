@@ -2,12 +2,12 @@ package com.fort.model.dto;
 
 public class GetClientDTO {
 
+    public final String name;
+
     public final String password;
 
-    public final long id;
-
-    public GetClientDTO(long id, String password) {
-        this.id = id;
+    public GetClientDTO(String name, String password) {
+        this.name = name;
         this.password = password;
     }
 }

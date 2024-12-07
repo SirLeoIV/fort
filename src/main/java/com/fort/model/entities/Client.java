@@ -13,6 +13,8 @@ public class Client {
 
     public String password;
 
+    public String name;
+
     public Client() {}
 
     public Long getId() {

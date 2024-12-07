@@ -13,28 +13,4 @@ public class ActionDTO {
         this.increase = increase;
         this.timestamp = timestamp;
     }
-
-    public int getDelay() {
-        return delay;
-    }
-
-    public void setDelay(int delay) {
-        this.delay = delay;
-    }
-
-    public int getIncrease() {
-        return increase;
-    }
-
-    public void setIncrease(int increase) {
-        this.increase = increase;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
 }

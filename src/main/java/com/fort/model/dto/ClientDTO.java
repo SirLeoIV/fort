@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ClientDTO {
 
-    private long id;
+    private String name;
 
     private String password;
 
@@ -12,18 +12,18 @@ public class ClientDTO {
 
     private int counter = 0;
 
-    public ClientDTO(long id, String password, List<ActionDTO> actions) {
-        this.id = id;
+    public ClientDTO(String name, String password, List<ActionDTO> actions) {
+        this.name = name;
         this.password = password;
         this.actions = actions;
     }
 
-    public long getId() {
-        return id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getName() {
+        return name;
     }
 
     public String getPassword() {
